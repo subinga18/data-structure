@@ -1,0 +1,64 @@
+//circular queue
+#include <stdio.h>
+#define Q_SIZE 5
+
+int queue[Q_SIZE];
+int rear=0, front=0;
+//if is queue empty return 1, if not 0
+
+int empty(){
+	if(rear==front){
+		return 1;
+	}
+	else return 0;
+}
+
+
+//if is queue full return 1, if not o
+int full(){
+	if(front==(rear+1)%Q_SIZE){
+		return 1;
+	}
+	else return 0;
+	
+}
+
+void enqueue(int a){
+	
+	if(full()==1){
+		return;
+	}
+	else{
+	rear=(rear+1)%Q_SIZE;
+		//REAR++;
+		//REAR=REAR%Q_SIZE 도 가능
+	queue[rear]=a;
+	printf("success %d\n",a);
+	}
+}
+
+void dequeue(){
+	if(empty()==1){
+		printf("it is empty\n");
+		return -999; // emmpty를 나타내는 예약된 숫자 리턴
+	}
+	else{
+		front=(front+1)%Q_SIZE;
+		//front++;
+		//front=front%Q_SIZE 도 가능
+		printf("dequeue success %d\n",queue[front]);
+		return queue[front];
+		
+	}
+}
+
+int main(){
+	enqueue(1);
+	enqueue(2);
+	enqueue(3);
+	enqueue(4);
+	enqueue(5);
+	
+	return 0;
+}
+
